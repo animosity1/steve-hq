@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "steve-hq-v1";
+  const STORAGE_KEY = "steve-hq-v6";
   const TZ = "America/Chicago";
   const CHALLENGE_END = new Date("2026-09-25T23:59:00-05:00");
 
@@ -102,7 +102,7 @@
   // ---------- seed data (Sep 2026) ----------
   function seedData() {
     return {
-      version: 1,
+      version: 6,
       events: [
         {
           id: uid(),
@@ -198,52 +198,104 @@
       ledger: [
         {
           id: uid(),
-          date: "2026-09-10",
-          who: "#gamdom100k 10x10k pool",
-          amount: 100000,
+          date: "2026-09-17",
+          who: "Video challenge $10k - Bente_pro / BENTEGER",
+          amount: 10000,
           category: "Challenge",
-          status: "OPEN",
-          notes: "Ten $10k winner slots. Track payouts as confirmed.",
+          status: "CONFIRMED",
+          notes: "Steve post: YOU WIN 10k. Source https://x.com/stevewilldoit/status/2100738032164876649",
           owner: "Steve",
-        },
-        {
-          id: uid(),
-          date: "2026-09-12",
-          who: "Challenge spend (CHECK)",
-          amount: 40000,
-          category: "Challenge",
-          status: "SENT",
-          notes: "~40k challenge spend. Verify against Adukes books.",
-          owner: "Adukes",
-        },
-        {
-          id: uid(),
-          date: "2026-09-15",
-          who: "Corvette raffle (TBD)",
-          amount: 0,
-          category: "Giveaway",
-          status: "OPEN",
-          notes: "Amount TBD until rules lock. Placeholder row.",
-          owner: "Steve",
-        },
-        {
-          id: uid(),
-          date: "2026-09-16",
-          who: "Code Steve giveaway narrative",
-          amount: 0,
-          category: "Gamdom",
-          status: "OPEN",
-          notes: "Track promo giveaways tied to Code Steve. No cash figure yet.",
-          owner: "optikz",
         },
         {
           id: uid(),
           date: "2026-09-17",
-          who: "Video challenge 10k hits",
+          who: "Video challenge $10k - NingYizhuo_GMIT",
           amount: 10000,
           category: "Challenge",
           status: "CONFIRMED",
-          notes: "Video challenge payout confirmed.",
+          notes: "Steve post: get 10k. Source https://x.com/stevewilldoit/status/2100736446873120790",
+          owner: "Steve",
+        },
+        {
+          id: uid(),
+          date: "2026-09-17",
+          who: "Video challenge $10k - HY100P / DRAGON",
+          amount: 10000,
+          category: "Challenge",
+          status: "CONFIRMED",
+          notes: "Steve post: You get $10,000. Source https://x.com/stevewilldoit/status/2100735647489130830",
+          owner: "Steve",
+        },
+        {
+          id: uid(),
+          date: "2026-09-17",
+          who: "Chiefs win giveaway $12.5k (via Adukes)",
+          amount: 12500,
+          category: "Giveaway",
+          status: "SENT",
+          notes: "Steve: pick the winner for $12,500 for chiefs win (@kingadukes). Source posts: chiefs / gamdom #2. Adukes handled payout.",
+          owner: "Adukes",
+        },
+        {
+          id: uid(),
+          date: "2026-09-17",
+          who: "@thefirstdanny - Steve $5,000",
+          amount: 5000,
+          category: "Giveaway",
+          status: "SENT",
+          notes: "User-confirmed: Steve sent $5,000 to @thefirstdanny this week.",
+          owner: "Steve",
+        },
+        {
+          id: uid(),
+          date: "2026-09-17",
+          who: "@0xwale - Steve $500",
+          amount: 500,
+          category: "Giveaway",
+          status: "SENT",
+          notes: "User-confirmed: Steve sent $500 to @0xwale. Kick exists but not on streamer roster.",
+          owner: "Steve",
+        },
+
+
+        {
+          id: uid(),
+          date: "2026-09-17",
+          who: "Other Steve video challenge winners (this week)",
+          amount: 10000,
+          category: "Challenge",
+          status: "SENT",
+          notes: "Steve said ~$40k already out on his video challenge picks. 3 named $10k = $30k. This $10k = remainder until Adukes confirms remaining names. Separate from Adukes $12.5k row.",
+          owner: "Adukes",
+        },
+        {
+          id: uid(),
+          date: "2026-09-18",
+          who: "Adukes owes chat $500 (tweet)",
+          amount: 500,
+          category: "Giveaway",
+          status: "OPEN",
+          notes: "Adukes: owe $500 from a tweet / comment gamdom names. Not paid yet.",
+          owner: "Adukes",
+        },
+        {
+          id: uid(),
+          date: "2026-09-18",
+          who: "#gamdom100k remaining pool (ends Sep 25)",
+          amount: 100000,
+          category: "Challenge",
+          status: "OPEN",
+          notes: "Ten $10k slots still open for the new challenge. Not sent yet. Do not count in money-out-this-week.",
+          owner: "Steve",
+        },
+        {
+          id: uid(),
+          date: "2026-09-18",
+          who: "Corvette raffle (TBD)",
+          amount: 0,
+          category: "Giveaway",
+          status: "OPEN",
+          notes: "Rules not locked. No cash out yet.",
           owner: "Steve",
         },
       ],
@@ -252,51 +304,100 @@
           id: uid(),
           name: "Steve Will Do It",
           handle: "@stevewilldoit",
+          kick: "https://kick.com/stevewilldoit",
           role: "Principal",
           status: "Active",
           gamdomCode: "STEVE",
           lastTouch: "2026-09-18",
-          notes: "Principal. Everything routes through Steve's world.",
+          notes: "Principal. Kick flagship. Everything routes through Steve.",
         },
         {
           id: uid(),
           name: "King ADukes",
           handle: "@kingadukes",
+          kick: "https://kick.com/adukes",
           role: "Ops",
           status: "Active",
           gamdomCode: "",
-          lastTouch: "2026-09-17",
-          notes: "Ops / Partner. Books sync owner.",
+          lastTouch: "2026-09-18",
+          notes: "Ops / Partner. Creative controls w/ Wolf. Books + giveaways. Kick streams.",
         },
         {
           id: uid(),
-          name: "Beekay",
-          handle: "",
-          role: "Partner",
+          name: "Trillz",
+          handle: "@Trillz",
+          kick: "https://kick.com/trilla",
+          role: "Streamer",
           status: "Active",
-          gamdomCode: "Gamdom tag partner",
-          lastTouch: "2026-09-15",
-          notes: "Gamdom tag partner. Add X handle when confirmed.",
+          gamdomCode: "STEVE",
+          lastTouch: "2026-09-18",
+          notes: "Steve Kick team. Channel title Trilla, X @Trillz. User-confirmed.",
         },
         {
           id: uid(),
           name: "Willdoittv",
           handle: "@willdoittv",
-          role: "Creator",
-          status: "Away",
-          gamdomCode: "",
-          lastTouch: "2026-09-10",
-          notes: "Related creator placeholder. Edit as needed.",
+          kick: "https://kick.com/goldencloverx",
+          role: "Streamer",
+          status: "Active",
+          gamdomCode: "STEVE",
+          lastTouch: "2026-09-16",
+          notes: "Steve Kick team. Adukes: @Willdoittv IS LIVE kick.com/goldencloverx.",
+        },
+        {
+          id: uid(),
+          name: "Itsrosebro",
+          handle: "@itsrosebro",
+          kick: "https://kick.com/itsrosebro",
+          role: "Streamer",
+          status: "Active",
+          gamdomCode: "STEVE",
+          lastTouch: "2026-09-18",
+          notes: "Steve Kick team. User-confirmed.",
+        },
+        {
+          id: uid(),
+          name: "XXTHEREV",
+          handle: "@XXTHEREV",
+          kick: "https://kick.com/xxrev",
+          role: "Streamer",
+          status: "Active",
+          gamdomCode: "STEVE",
+          lastTouch: "2026-09-18",
+          notes: "Steve Kick team / leader of the streamers (Steve post). Kick slug XXREV.",
+        },
+        {
+          id: uid(),
+          name: "Wolf",
+          handle: "@itswolflive",
+          kick: "https://kick.com/itswolflive",
+          role: "Streamer",
+          status: "Active",
+          gamdomCode: "STEVE",
+          lastTouch: "2026-09-18",
+          notes: "Steve Kick team / creator lead. Steve offered head of creators + $25k/week trial. Wolf: wont let you or the team down.",
+        },
+        {
+          id: uid(),
+          name: "Beekay",
+          handle: "@gamdom_beekay",
+          kick: "",
+          role: "Partner",
+          status: "Active",
+          gamdomCode: "Gamdom",
+          lastTouch: "2026-09-15",
+          notes: "Gamdom partner / tag. NOT a Steve Kick streamer.",
         },
         {
           id: uid(),
           name: "optikz1",
           handle: "@optikz1",
+          kick: "",
           role: "PA",
           status: "Active",
           gamdomCode: "",
           lastTouch: "2026-09-18",
-          notes: "Assistant. Day 0 desk owner.",
+          notes: "Assistant. Day 0 desk owner. Not a Kick streamer.",
         },
       ],
       gamdom: {
@@ -326,11 +427,10 @@
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (parsed && parsed.version === 1) return parsed;
+        if (parsed && parsed.version === 6) return parsed;
       }
     } catch (_) {}
     const s = seedData();
-    // Mark Steve role note - use Partner per schema; notes already say Principal
     localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
     return s;
   }
@@ -448,13 +548,15 @@
         .join("");
     }
 
-    // Money out this week: OPEN + SENT + CONFIRMED (user said OPEN+PAID; we map PAID to SENT+CONFIRMED)
-    const weekRows = state.ledger.filter((row) => inThisWeek(row.date));
-    const weekSum = weekRows.reduce((s, r) => s + (Number(r.amount) || 0), 0);
+    // Money out this week = already sent (SENT + CONFIRMED only). OPEN promises stay out of the total.
+    const weekSent = state.ledger.filter(
+      (row) => inThisWeek(row.date) && (row.status === "SENT" || row.status === "CONFIRMED") && Number(row.amount) > 0
+    );
+    const weekSum = weekSent.reduce((s, r) => s + (Number(r.amount) || 0), 0);
     $("#home-money-week").textContent = fmtMoney(weekSum);
     $("#home-money-detail").textContent =
-      weekRows.length +
-      " row(s) dated this week · OPEN + SENT + CONFIRMED";
+      weekSent.length +
+      " payout(s) this week · SENT + CONFIRMED only (serious books)";
 
     const liveOrCall = state.roster.filter(
       (p) => p.status === "Live" || p.status === "Active"
@@ -773,6 +875,7 @@
         <div class="roster-meta">
           <span class="badge badge-type">${esc(p.role)}</span>
           ${p.gamdomCode ? `<span class="badge badge-normal">${esc(p.gamdomCode)}</span>` : ""}
+          ${p.kick ? `<a class="kick-link" href="${esc(p.kick)}" target="_blank" rel="noopener">Kick ↗</a>` : `<span class="muted small">No Kick</span>`}
         </div>
         <div class="roster-notes">${esc(p.notes || "No notes yet.")}</div>
         <div class="roster-foot">
@@ -931,6 +1034,7 @@
     openModal(r ? "Edit person" : "Add person", [
       field("Name", "name", "text", r?.name || ""),
       field("X handle", "handle", "text", r?.handle || ""),
+      field("Kick URL", "kick", "text", r?.kick || ""),
       field("Role", "role", "select", r?.role || "Streamer", [
         "Principal",
         "PA",
