@@ -32,7 +32,7 @@ Preloaded so Day 0 looks alive:
 
 - `#gamdom100k` ends **Sep 25, 2026 11:59pm CT**
 - Open loops: Rams box, Adukes books, Shane Stoffer, Duolingo, Abby hour, Corvette rules
-- Ledger: 10x10k pool, ~40k challenge spend + Adukes $12.5k SENT, Corvette TBD, Code Steve giveaway note, video challenge winners
+- Ledger: 10x10k pool, ~40k challenge spend, Corvette TBD, Code Steve giveaway note, video challenge 10k
 - Roster: Steve, King ADukes, Beekay, Willdoittv, @optikz1
 
 Double-click the **SW** brand mark to reset local data back to this seed.
