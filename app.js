@@ -408,8 +408,10 @@
   }
 
   function tickClock() {
-    const el = $("#clock-ct");
-    if (el) el.textContent = formatCTClock();
+    const t = formatCTClock();
+    $$(".clock").forEach((el) => {
+      el.textContent = t;
+    });
     updateCountdown();
   }
 
@@ -1087,14 +1089,14 @@
       if (e.key === "Escape") closeModal();
     });
 
-    $$(["data-goto"]).forEach((a) =>
+    $$('[data-goto]').forEach((a) =>
       a.addEventListener("click", (e) => {
         e.preventDefault();
         switchTab(a.dataset.goto);
       })
     );
 
-    $$(["data-qa"]).forEach((b) =>
+    $$('[data-qa]').forEach((b) =>
       b.addEventListener("click", () => {
         const q = b.dataset.qa;
         if (q === "reminder") {
@@ -1251,7 +1253,7 @@
     });
 
     $("#btn-save-winners").addEventListener("click", () => {
-      $$(["data-winner"]).forEach((inp) => {
+      $$('[data-winner]').forEach((inp) => {
         const i = Number(inp.dataset.winner);
         state.gamdom.winners[i] = inp.value.trim();
       });
@@ -1289,10 +1291,12 @@
     });
 
     // Hidden: double-click brand to reset seed (dev convenience)
-    $(".brand").addEventListener("dblclick", () => {
-      if (confirm("Reset STEVE HQ to Day 0 seed data? This overwrites local storage.")) {
-        resetToSeed();
-      }
+    $$(".brand").forEach((el) => {
+      el.addEventListener("dblclick", () => {
+        if (confirm("Reset STEVE HQ to Day 0 seed data? This overwrites local storage.")) {
+          resetToSeed();
+        }
+      });
     });
   }
 
