@@ -2,7 +2,7 @@
 
 Operator desk for Steve Will Do It's world. Built for **@stevewilldoit** by **@optikz1**.
 
-Dark premium Gamdom-forward command center: calendar, reminders, money-out ledger, roster, and #gamdom100k war room. All data lives in your browser (`localStorage`). No server. No deploy required.
+Motions × Gamdom phone-first ops desk: calendar, reminders, money-out ledger, roster, and #gamdom100k war room. Bottom tabs on mobile, bold left rail on desktop. All data lives in your browser (`localStorage`). No server. No deploy required.
 
 ## Open locally
 
@@ -22,8 +22,8 @@ Or open `index.html` directly in a browser (file://). Prefer a local server if c
 | `1` | Home | Today strip (America/Chicago), #gamdom100k countdown, next reminders, weekly money out, Live / On call chips, quick adds |
 | `2` | Calendar | Month view (defaults Sep 2026) + upcoming list. Types: Stream / Challenge / Travel / IRL / Other |
 | `3` | Reminders | FIRE/NORMAL · OPEN/DONE · related tags. Export **#MotionSteveReminders** paste for Eddie |
-| `4` | Ledger | Money out with OPEN / SENT / CONFIRMED totals |
-| `5` | Roster | Team cards, search, Mark Live toggle |
+| `4` | Cash (Ledger) | Money out with OPEN / SENT / CONFIRMED totals |
+| `5` | Team (Roster) | Talent cards, search, Mark Live toggle |
 | `6` | Gamdom | Code Steve panel, winner slots 1-10, promo checklist, plain-text refs |
 
 ## Seed context (Sep 2026)
@@ -50,10 +50,11 @@ steve-hq/
   styles.css
   app.js
   README.md
+  CHANGELOG.md
 ```
 
 ## Brand notes
 
-- Colors: black `#0a0a0a`, Gamdom red `#e10600`, money green `#39ff14`
+- Colors: near-black `#070707`, Gamdom red `#e10600`, Motions yellow `#ffe566`, money green sparingly
 - Gamdom mark is **text only** (no logos)
 - Footer: `built for @stevewilldoit by @optikz1 · Day 0 desk`
