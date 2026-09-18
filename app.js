@@ -1089,14 +1089,14 @@
       if (e.key === "Escape") closeModal();
     });
 
-    $$('[data-goto]').forEach((a) =>
+    $$("[data-goto]").forEach((a) =>
       a.addEventListener("click", (e) => {
         e.preventDefault();
         switchTab(a.dataset.goto);
       })
     );
 
-    $$('[data-qa]').forEach((b) =>
+    $$("[data-qa]").forEach((b) =>
       b.addEventListener("click", () => {
         const q = b.dataset.qa;
         if (q === "reminder") {
@@ -1253,7 +1253,7 @@
     });
 
     $("#btn-save-winners").addEventListener("click", () => {
-      $$('[data-winner]').forEach((inp) => {
+      $$("[data-winner]").forEach((inp) => {
         const i = Number(inp.dataset.winner);
         state.gamdom.winners[i] = inp.value.trim();
       });
