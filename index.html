@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STEVE HQ · Operator Desk</title>
+  <meta name="description" content="Operator desk for Steve Will Do It world. Built for @stevewilldoit by @optikz1." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand">
+          <span class="brand-mark">SW</span>
+          <div class="brand-text">
+            <strong>STEVE HQ</strong>
+            <span>Operator Desk</span>
+          </div>
+        </div>
+        <div class="topbar-meta">
+          <span class="pill pill-operator">Operator @optikz1</span>
+          <span class="pill pill-live"><span class="live-dot"></span> SYSTEMS LIVE</span>
+          <span class="pill pill-gamdom">Gamdom</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <button type="button" class="btn btn-ghost" id="btn-export-json" title="Export backup JSON">Export</button>
+        <button type="button" class="btn btn-ghost" id="btn-import-json" title="Import backup JSON">Import</button>
+        <input type="file" id="import-file" accept="application/json,.json" hidden />
+        <span class="clock" id="clock-ct" aria-live="polite"></span>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Modules">
+      <button type="button" class="tab active" data-tab="home" role="tab" aria-selected="true"><kbd>1</kbd> Home</button>
+      <button type="button" class="tab" data-tab="calendar" role="tab"><kbd>2</kbd> Calendar</button>
+      <button type="button" class="tab" data-tab="reminders" role="tab"><kbd>3</kbd> Reminders</button>
+      <button type="button" class="tab" data-tab="ledger" role="tab"><kbd>4</kbd> Ledger</button>
+      <button type="button" class="tab" data-tab="roster" role="tab"><kbd>5</kbd> Roster</button>
+      <button type="button" class="tab" data-tab="gamdom" role="tab"><kbd>6</kbd> Gamdom</button>
+    </nav>
+
+    <main class="main">
+      <!-- HOME -->
+      <section id="panel-home" class="panel active" role="tabpanel">
+        <div class="page-head">
+          <div>
+            <h1>Home</h1>
+            <p class="muted" id="today-strip">Loading…</p>
+          </div>
+          <div class="quick-actions">
+            <button type="button" class="btn btn-primary" data-qa="reminder">+ Reminder</button>
+            <button type="button" class="btn btn-secondary" data-qa="ledger">+ Ledger</button>
+            <button type="button" class="btn btn-secondary" data-qa="event">+ Event</button>
+          </div>
+        </div>
+
+        <div class="grid home-grid">
+          <article class="card card-countdown">
+            <div class="card-label">#gamdom100k</div>
+            <h2>Challenge ends</h2>
+            <p class="countdown-target">Sep 25, 2026 · 11:59pm CT</p>
+            <div class="countdown" id="countdown-display">
+              <div class="cd-unit"><span id="cd-d">--</span><small>Days</small></div>
+              <div class="cd-unit"><span id="cd-h">--</span><small>Hours</small></div>
+              <div class="cd-unit"><span id="cd-m">--</span><small>Min</small></div>
+              <div class="cd-unit"><span id="cd-s">--</span><small>Sec</small></div>
+            </div>
+            <p class="countdown-status" id="countdown-status"></p>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h2>Today's reminders</h2>
+              <a href="#" class="link-tab" data-goto="reminders">All →</a>
+            </div>
+            <ul class="list" id="home-reminders"></ul>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h2>Money out this week</h2>
+              <a href="#" class="link-tab" data-goto="ledger">Ledger →</a>
+            </div>
+            <div class="stat-money" id="home-money-week">$0</div>
+            <p class="muted small" id="home-money-detail">OPEN + SENT + CONFIRMED dated this week</p>
+          </article>
+
+          <article class="card">
+            <div class="card-head">
+              <h2>Streamers status</h2>
+              <a href="#" class="link-tab" data-goto="roster">Roster →</a>
+            </div>
+            <div id="home-streamers" class="streamer-chips"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CALENDAR -->
+      <section id="panel-calendar" class="panel" role="tabpanel" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Calendar</h1>
+            <p class="muted">Month view · America/Chicago</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-add-event">+ Event</button>
+        </div>
+        <div class="cal-layout">
+          <article class="card cal-month-card">
+            <div class="cal-nav">
+              <button type="button" class="btn btn-icon" id="cal-prev" aria-label="Previous month">‹</button>
+              <h2 id="cal-month-label">September 2026</h2>
+              <button type="button" class="btn btn-icon" id="cal-next" aria-label="Next month">›</button>
+            </div>
+            <div class="cal-weekdays">
+              <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </article>
+          <article class="card">
+            <div class="card-head">
+              <h2>Upcoming</h2>
+              <span class="muted small" id="cal-upcoming-count"></span>
+            </div>
+            <ul class="list" id="cal-upcoming"></ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- REMINDERS -->
+      <section id="panel-reminders" class="panel" role="tabpanel" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Reminders</h1>
+            <p class="muted">Open loops for Steve's world</p>
+          </div>
+          <div class="row-actions">
+            <button type="button" class="btn btn-accent" id="btn-export-motion">Export #MotionSteveReminders</button>
+            <button type="button" class="btn btn-primary" id="btn-add-reminder">+ Reminder</button>
+          </div>
+        </div>
+        <div class="filters" id="reminder-filters">
+          <button type="button" class="chip active" data-filter="OPEN">Open</button>
+          <button type="button" class="chip" data-filter="DONE">Done</button>
+          <button type="button" class="chip" data-filter="FIRE">Fire</button>
+          <button type="button" class="chip" data-filter="ALL">All</button>
+        </div>
+        <div class="table-wrap card">
+          <table class="data-table" id="reminders-table">
+            <thead>
+              <tr>
+                <th>Priority</th>
+                <th>Reminder</th>
+                <th>Due</th>
+                <th>Related</th>
+                <th>Status</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="empty" id="reminders-empty" hidden>No reminders in this filter.</div>
+        </div>
+      </section>
+
+      <!-- LEDGER -->
+      <section id="panel-ledger" class="panel" role="tabpanel" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Ledger</h1>
+            <p class="muted">Money out tracker</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-add-ledger">+ Row</button>
+        </div>
+        <div class="totals-row" id="ledger-totals"></div>
+        <div class="table-wrap card">
+          <table class="data-table" id="ledger-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Who / What</th>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Owner</th>
+                <th>Notes</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+          <div class="empty" id="ledger-empty" hidden>No ledger rows yet. Add the first money-out item.</div>
+        </div>
+      </section>
+
+      <!-- ROSTER -->
+      <section id="panel-roster" class="panel" role="tabpanel" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Roster</h1>
+            <p class="muted">Streamers · ops · partners</p>
+          </div>
+          <button type="button" class="btn btn-primary" id="btn-add-roster">+ Person</button>
+        </div>
+        <div class="search-bar">
+          <input type="search" id="roster-search" placeholder="Search name or handle…" autocomplete="off" />
+        </div>
+        <div class="roster-grid" id="roster-grid"></div>
+        <div class="empty" id="roster-empty" hidden>No matches. Clear search or add someone.</div>
+      </section>
+
+      <!-- GAMDOM -->
+      <section id="panel-gamdom" class="panel" role="tabpanel" hidden>
+        <div class="page-head">
+          <div>
+            <h1>Gamdom</h1>
+            <p class="muted">Code Steve · challenge war room</p>
+          </div>
+        </div>
+        <div class="grid gamdom-grid">
+          <article class="card">
+            <div class="card-label">Code Steve</div>
+            <h2>Promo panel</h2>
+            <label class="field">
+              <span>Biggest code push note</span>
+              <textarea id="gamdom-push" rows="3" placeholder="What's the push this week?"></textarea>
+            </label>
+            <label class="field">
+              <span>Responsible gambling line</span>
+              <textarea id="gamdom-rg" rows="2" placeholder="Keep it clean and compliant…"></textarea>
+            </label>
+            <label class="field">
+              <span>Status narrative</span>
+              <textarea id="gamdom-status" rows="3" placeholder="Where Code Steve stands…"></textarea>
+            </label>
+            <button type="button" class="btn btn-primary" id="btn-save-gamdom">Save panel</button>
+            <p class="muted small save-hint" id="gamdom-save-hint"></p>
+          </article>
+
+          <article class="card card-countdown">
+            <div class="card-label">War room</div>
+            <h2>#gamdom100k</h2>
+            <div class="countdown compact" id="countdown-display-2">
+              <div class="cd-unit"><span id="cd2-d">--</span><small>D</small></div>
+              <div class="cd-unit"><span id="cd2-h">--</span><small>H</small></div>
+              <div class="cd-unit"><span id="cd2-m">--</span><small>M</small></div>
+              <div class="cd-unit"><span id="cd2-s">--</span><small>S</small></div>
+            </div>
+            <h3 class="subhead">Winner slots 1-10</h3>
+            <div class="winner-slots" id="winner-slots"></div>
+            <button type="button" class="btn btn-secondary" id="btn-save-winners">Save winners</button>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Checklist</div>
+            <h2>Promo checklist</h2>
+            <ul class="checklist" id="promo-checklist"></ul>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-add-check">+ Checklist item</button>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Links</div>
+            <h2>Quick refs</h2>
+            <ul class="plain-links">
+              <li><span class="mono">gamdom.com</span> · main site (plain text)</li>
+              <li>Promo code: <strong>STEVE</strong></li>
+              <li>Challenge tag: <strong>#gamdom100k</strong></li>
+              <li>Operator: <strong>@optikz1</strong></li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      built for @stevewilldoit by @optikz1 · Day 0 desk
+    </footer>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head">
+        <h2 id="modal-title">Edit</h2>
+        <button type="button" class="btn btn-icon" id="modal-close" aria-label="Close">×</button>
+      </div>
+      <form id="modal-form" class="modal-body"></form>
+      <div class="modal-foot">
+        <button type="button" class="btn btn-ghost" id="modal-cancel">Cancel</button>
+        <button type="submit" form="modal-form" class="btn btn-primary" id="modal-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
